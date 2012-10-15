@@ -62,10 +62,8 @@ $(".showTerminal").bind('deck.becameCurrent', function(ev,  element)
 			}
 		}
 		
-		terminalContainer.currentSlide.innerHTML				='<pre></pre>';
+		terminalContainer.currentSlide.innerHTML				='<div class="terminal"><pre id="input"></pre></div>';
 		terminalContainer.currentOutput							= preElements[0];
-		terminalContainer.currentOutput.style.color				="#0B0";
-		terminalContainer.currentOutput.style.backgroundColor	="black";
 		terminalContainer.timer									= setTimeout("showNextPreElement()",1000);
 	}
 });
@@ -100,9 +98,9 @@ function showNextPreElement()
 	
 	if( "input" == terminalInput.getAttribute("id") )
 	{
-		terminalContainer.currentPreElementRemainder 	= "pt#" + terminalInput.innerHTML+"\n";
-		terminalContainer.currentOutput.innerHTML		+= '_';
-		terminalContainer.typeTimer						= setTimeout("terminalShowNextKeystroke()",150);
+		terminalContainer.currentPreElementRemainder 	= terminalInput.innerHTML+"\n";
+		terminalContainer.currentOutput.innerHTML		+= 'pt# _';
+		terminalContainer.typeTimer						= setTimeout("terminalShowNextKeystroke()",1000);
 		return;
 	}
 	else
