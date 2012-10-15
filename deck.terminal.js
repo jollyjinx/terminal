@@ -34,7 +34,7 @@ terminalContainer.timer 						= undefined;
 terminalContainer.preElementsToShow				= undefined;
 terminalContainer.currentPreElementRemainder	= undefined;
 
-$("#showTerminal").bind('deck.becameCurrent', function(ev,  element)
+$(".showTerminal").bind('deck.becameCurrent', function(ev,  element)
 {
 	{
 		clearTerminalTimer();
@@ -100,14 +100,14 @@ function showNextPreElement()
 	
 	if( "input" == terminalInput.getAttribute("id") )
 	{
-		terminalContainer.currentPreElementRemainder 	= "pt#" + terminalInput.innerHTML;
+		terminalContainer.currentPreElementRemainder 	= "pt#" + terminalInput.innerHTML+"\n";
 		terminalContainer.currentOutput.innerHTML		+= '_';
 		terminalContainer.typeTimer						= setTimeout("terminalShowNextKeystroke()",150);
 		return;
 	}
 	else
 	{
-		terminalContainer.currentOutput.innerHTML 		+= "\n" + terminalInput.innerHTML +"\n";	
+		terminalContainer.currentOutput.innerHTML 		+= terminalInput.innerHTML+"\n";	
 	}
 	
 	if( terminalContainer.preElementsToShow.length > 0 )
