@@ -64,7 +64,7 @@ $(".showTerminal").bind('deck.becameCurrent', function(ev,  element)
 		
 		terminalContainer.currentSlide.innerHTML				='<div class="terminal"><pre id="input"></pre></div>';
 		terminalContainer.currentOutput							= preElements[0];
-		terminalContainer.timer									= setTimeout("showNextPreElement()",1000);
+		terminalContainer.timer									= setTimeout("showNextPreElement()",1);
 	}
 });
 
@@ -123,9 +123,28 @@ function terminalShowNextKeystroke()
 	{
 		if( '_' == terminalContainer.currentOutput.innerHTML.slice(-1) )
 		{
-			terminalContainer.currentOutput.innerHTML = terminalContainer.currentOutput.innerHTML.slice(0,-1) + terminalContainer.currentPreElementRemainder.charAt(0) ;
+			terminalContainer.currentOutput.innerHTML = terminalContainer.currentOutput.innerHTML.slice(0,-1);
 		}
-		terminalContainer.currentPreElementRemainder = terminalContainer.currentPreElementRemainder.slice(1);
+		
+		
+		var chartotype 									= terminalContainer.currentPreElementRemainder.charAt(0);
+		terminalContainer.currentPreElementRemainder	= terminalContainer.currentPreElementRemainder.slice(1);
+		
+		if( '&' == chartotype )
+		{
+			var nextchar;
+			do
+			{
+				nextchar										= terminalContainer.currentPreElementRemainder.charAt(0);
+				terminalContainer.currentPreElementRemainder	= terminalContainer.currentPreElementRemainder.slice(1);
+				chartotype += nextchar;
+			}
+			while( nextchar != ';' );
+		}
+		
+		
+		
+		terminalContainer.currentOutput.innerHTML 		= terminalContainer.currentOutput.innerHTML+chartotype
 
 		if( terminalContainer.currentPreElementRemainder.length > 0 )
 		{	
@@ -135,6 +154,6 @@ function terminalShowNextKeystroke()
 	}
 	else
 	{
-		terminalContainer.timer		= setTimeout("showNextPreElement()",1000);
+		terminalContainer.timer		= setTimeout("showNextPreElement()",500);
 	}
 }
