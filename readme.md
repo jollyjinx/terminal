@@ -21,7 +21,8 @@ Example syntax:
 </pre>
 
 Install it by copying it into the deck.js extensions folder and reference it in your presentation like this:
-	<script src="deckjspath/extensions/terminal/deck.terminal.js"></script>
+<pre>
+&lt;script src="deckjspath/extensions/terminal/deck.terminal.js"&gt;&lt;/script&gt;
+</pre>
 
-
-It is not finished. 
+ 

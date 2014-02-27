@@ -1,3 +1,26 @@
+(function($, deck, undefined) {
+   $(document).bind('deck.change', function(e, from, to) {
+      var $prev = $[deck]('getSlide', to-1),
+      $next = $[deck]('getSlide', to+1),
+      $oldprev = $[deck]('getSlide', from-1),
+      $oldnext = $[deck]('getSlide', from+1);
+      
+      var direction = "forward";
+      if(from > to){
+        direction = "reverse";
+      }
+
+      $[deck]('getSlide', to).trigger('deck.becameCurrent', $[deck]('getSlide', to) );
+      $[deck]('getSlide', from).trigger('deck.lostCurrent', direction);
+
+      $prev && $prev.trigger('deck.becamePrevious', direction);
+      $next && $next.trigger('deck.becameNext', direction);
+
+      $oldprev && $oldprev.trigger('deck.lostPrevious', direction);
+      $oldnext && $oldnext.trigger('deck.lostNext', direction);
+   });
+})(jQuery, 'deck');
+
 
 
 
@@ -11,7 +34,7 @@ terminalContainer.timer 						= undefined;
 terminalContainer.preElementsToShow				= undefined;
 terminalContainer.currentPreElementRemainder	= undefined;
 
-$("#showTerminal").bind('deck.becameCurrent', function(ev,  element)
+$(".showTerminal").bind('deck.becameCurrent', function(ev,  element)
 {
 	{
 		clearTerminalTimer();
@@ -39,11 +62,9 @@ $("#showTerminal").bind('deck.becameCurrent', function(ev,  element)
 			}
 		}
 		
-		terminalContainer.currentSlide.innerHTML				='<pre></pre>';
+		terminalContainer.currentSlide.innerHTML				='<div class="terminal"><pre id="input"></pre></div>';
 		terminalContainer.currentOutput							= preElements[0];
-		terminalContainer.currentOutput.style.color				="#0B0";
-		terminalContainer.currentOutput.style.backgroundColor	="black";
-		terminalContainer.timer									= setTimeout("showNextPreElement()",1000);
+		terminalContainer.timer									= setTimeout("showNextPreElement()",1);
 	}
 });
 
@@ -77,14 +98,14 @@ function showNextPreElement()
 	
 	if( "input" == terminalInput.getAttribute("id") )
 	{
-		terminalContainer.currentPreElementRemainder 	= "pt#" + terminalInput.innerHTML;
-		terminalContainer.currentOutput.innerHTML		+= '_';
-		terminalContainer.typeTimer						= setTimeout("terminalShowNextKeystroke()",150);
+		terminalContainer.currentPreElementRemainder 	= terminalInput.innerHTML+"\n";
+		terminalContainer.currentOutput.innerHTML		+= 'pt# _';
+		terminalContainer.typeTimer						= setTimeout("terminalShowNextKeystroke()",1000);
 		return;
 	}
 	else
 	{
-		terminalContainer.currentOutput.innerHTML 		+= "\n" + terminalInput.innerHTML +"\n";	
+		terminalContainer.currentOutput.innerHTML 		+= terminalInput.innerHTML+"\n";	
 	}
 	
 	if( terminalContainer.preElementsToShow.length > 0 )
@@ -102,9 +123,28 @@ function terminalShowNextKeystroke()
 	{
 		if( '_' == terminalContainer.currentOutput.innerHTML.slice(-1) )
 		{
-			terminalContainer.currentOutput.innerHTML = terminalContainer.currentOutput.innerHTML.slice(0,-1) + terminalContainer.currentPreElementRemainder.charAt(0) ;
+			terminalContainer.currentOutput.innerHTML = terminalContainer.currentOutput.innerHTML.slice(0,-1);
 		}
-		terminalContainer.currentPreElementRemainder = terminalContainer.currentPreElementRemainder.slice(1);
+		
+		
+		var chartotype 									= terminalContainer.currentPreElementRemainder.charAt(0);
+		terminalContainer.currentPreElementRemainder	= terminalContainer.currentPreElementRemainder.slice(1);
+		
+		if( '&' == chartotype )
+		{
+			var nextchar;
+			do
+			{
+				nextchar										= terminalContainer.currentPreElementRemainder.charAt(0);
+				terminalContainer.currentPreElementRemainder	= terminalContainer.currentPreElementRemainder.slice(1);
+				chartotype += nextchar;
+			}
+			while( nextchar != ';' );
+		}
+		
+		
+		
+		terminalContainer.currentOutput.innerHTML 		= terminalContainer.currentOutput.innerHTML+chartotype
 
 		if( terminalContainer.currentPreElementRemainder.length > 0 )
 		{	
@@ -114,6 +154,6 @@ function terminalShowNextKeystroke()
 	}
 	else
 	{
-		terminalContainer.timer		= setTimeout("showNextPreElement()",1000);
+		terminalContainer.timer		= setTimeout("showNextPreElement()",500);
 	}
 }

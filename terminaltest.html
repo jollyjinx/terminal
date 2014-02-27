@@ -8,24 +8,25 @@
 	<title>Your deck.js Presentation</title>
 	
 	<!-- Required stylesheet -->
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/core/deck.core.css">
+	<link rel="stylesheet" href="deck.js/core/deck.core.css">
 	
 	<!-- Extension CSS files go here. Remove or add as needed. -->
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/extensions/goto/deck.goto.css">
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/extensions/menu/deck.menu.css">
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/extensions/navigation/deck.navigation.css">
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/extensions/status/deck.status.css">
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/extensions/hash/deck.hash.css">
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="deck.js/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="deck.js/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="deck.js/extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="deck.terminal.css">
 
 	<!-- Style theme. More available in /themes/style/ or create your own. -->
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/themes/style/web-2.0.css">
+	<link rel="stylesheet" href="deck.js/themes/style/web-2.0.css">
 	
 	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
-	<link rel="stylesheet" href="https://raw.github.com/jollyjinx/deck.js/master/themes/transition/horizontal-slide.css">
+	<link rel="stylesheet" href="deck.js/themes/transition/horizontal-slide.css">
 	
 	<!-- Required Modernizr file -->
-	<script src="https://raw.github.com/jollyjinx/deck.js/master/modernizr.custom.js"></script>
+	<script src="deck.js/modernizr.custom.js"></script>
 </head>
 <body class="deck-container">
 
@@ -35,17 +36,18 @@
 
 <section class="slide">
 	<h1>Terminal Simulation</h1>
-	<h2>Patrick Stein (@jollyjinx)</h2>
-</section>
+	<h2>Patrick Stein (<a href="http://www.twitter.com/jollyjinx">@jollyjinx</a>)</h2>
+</section> 
 
 
 
 
 <section class="slide">
-<div id="showTerminal" class="slide">
+<h2>Here we go</h2>
+<div class="slide showTerminal">
 
 <pre id="input">
-# ls -l
+ls -l
 </pre>
 
 <pre id="output" >
@@ -54,9 +56,10 @@ total 24
 -rw-r--r--@ 1 jolly  admin   958 12 Oct 09:59 readme.md
 -rw-r--r--@ 1 jolly  admin  4303 12 Oct 09:48 terminaltest.html
 </pre>
-
+</div>
+<div class="slide showTerminal">
 <pre id="input">
-# who are you
+who are you ?
 </pre>
 
 <pre id="input">
@@ -70,18 +73,19 @@ I'm the terminal simulation you are looking for
 
 
 <section class="slide">
-<div id="showTerminal" class="slide">
+<h2>Here we go - part2</h2>
+<div class="slide showTerminal">
 
 <pre id="input">
-# can you do a second slide ?
+Can you do a second slide ?
 </pre>
-
 <pre id="output" >
-Nope.
+Yes, I can.
 </pre>
 
+
 <pre id="input">
-# really ?
+really ?
 </pre>
 
 <pre id="output" >
@@ -107,8 +111,8 @@ Yes.
 <!-- Begin extension snippets. Add or remove as needed. -->
 
 <!-- deck.navigation snippet -->
-<a href="https://raw.github.com/jollyjinx/deck.js/master/#" class="deck-prev-link" title="Previous">&#8592;</a>
-<a href="https://raw.github.com/jollyjinx/deck.js/master/#" class="deck-next-link" title="Next">&#8594;</a>
+<a href="deck.js/#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="deck.js/#" class="deck-next-link" title="Next">&#8594;</a>
 
 <!-- deck.status snippet -->
 <p class="deck-status">
@@ -126,24 +130,23 @@ Yes.
 </form>
 
 <!-- deck.hash snippet -->
-<a href="" title="Permalink to this slide" class="deck-permalink">#</a>
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
 
 <!-- End extension snippets. -->
 
 
 <!-- Required JS files. -->
-<script src="https://raw.github.com/jollyjinx/deck.js/master/jquery-1.7.2.min.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/core/deck.core.js"></script>
+<script src="deck.js/jquery-1.7.2.min.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
 
 <!-- Extension JS files. Add or remove as needed. -->
-<script src="https://raw.github.com/jollyjinx/deck.js/master/core/deck.core.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/hash/deck.hash.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/menu/deck.menu.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/goto/deck.goto.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/status/deck.status.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/navigation/deck.navigation.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/scale/deck.scale.js"></script>
-<script src="https://raw.github.com/jollyjinx/deck.js/master/extensions/slideevents/deck.events.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/hash/deck.hash.js"></script>
+<script src="deck.js/extensions/menu/deck.menu.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js/extensions/scale/deck.scale.js"></script>
 <script src="./deck.terminal.js"></script>
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
